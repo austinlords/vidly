@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import LoginForm from "./components/common/loginForm";
+import LoginForm from "./components/loginForm";
 import Movies from "./components/movies";
 import NavBar from "./components/common/navbar";
 import Customers from "./components/customers";
