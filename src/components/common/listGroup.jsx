@@ -1,30 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const ListGroup = ({
-  currentSelection,
   items,
-  onSelect,
+  textProperty,
   valueProperty,
-  textProperty
+  selectedItem,
+  onItemSelect
 }) => {
-  let allItemsClasses = "list-group-item ";
-  if (currentSelection === null) allItemsClasses += "active";
-
   return (
-    <ul className="list-group" style={{ cursor: "pointer" }}>
-      <li className={allItemsClasses} onClick={() => onSelect(null)}>
-        All Genres
-      </li>
+    <ul className="list-group">
       {items.map(item => (
         <li
-          className={
-            item === currentSelection
-              ? "list-group-item active"
-              : "list-group-item"
-          }
+          onClick={() => onItemSelect(item)}
           key={item[valueProperty]}
-          onClick={() => onSelect(item)}
+          className={
+            item === selectedItem ? "list-group-item active" : "list-group-item"
+          }
         >
           {item[textProperty]}
         </li>
@@ -36,12 +27,6 @@ const ListGroup = ({
 ListGroup.defaultProps = {
   textProperty: "name",
   valueProperty: "_id"
-};
-
-ListGroup.propTypes = {
-  onSelect: PropTypes.func.isRequired,
-  items: PropTypes.array.isRequired,
-  currentSelection: PropTypes.any
 };
 
 export default ListGroup;

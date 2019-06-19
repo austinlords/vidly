@@ -15,9 +15,7 @@ class Form extends Component {
     if (!error) return null;
 
     const errors = {};
-
     for (let item of error.details) errors[item.path[0]] = item.message;
-
     return errors;
   };
 
@@ -35,7 +33,7 @@ class Form extends Component {
     this.setState({ errors: errors || {} });
     if (errors) return;
 
-    this.doSubmit(e);
+    this.doSubmit();
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -46,10 +44,11 @@ class Form extends Component {
 
     const data = { ...this.state.data };
     data[input.name] = input.value;
+
     this.setState({ data, errors });
   };
 
-  renderSubmitButton(label) {
+  renderButton(label) {
     return (
       <button disabled={this.validate()} className="btn btn-primary">
         {label}
@@ -62,11 +61,11 @@ class Form extends Component {
 
     return (
       <Select
+        name={name}
+        value={data[name]}
         label={label}
         options={options}
-        name={name}
         onChange={this.handleChange}
-        value={data[name]}
         error={errors[name]}
       />
     );
@@ -77,11 +76,10 @@ class Form extends Component {
 
     return (
       <Input
-        value={data[name]}
-        id={name}
-        name={name}
-        label={label}
         type={type}
+        name={name}
+        value={data[name]}
+        label={label}
         onChange={this.handleChange}
         error={errors[name]}
       />

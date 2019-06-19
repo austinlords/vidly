@@ -4,26 +4,27 @@ import Form from "./common/form";
 
 class RegisterForm extends Form {
   state = {
-    data: { username: "", name: "", password: "" },
+    data: { username: "", password: "", name: "" },
     errors: {}
   };
 
   schema = {
     username: Joi.string()
+      .required()
       .email()
-      .required()
       .label("Username"),
-    name: Joi.string()
-      .required()
-      .label("Name"),
     password: Joi.string()
       .required()
       .min(5)
-      .label("Password")
+      .label("Password"),
+    name: Joi.string()
+      .required()
+      .label("Name")
   };
 
   doSubmit = () => {
-    console.log("new register send to server");
+    // Call the server
+    console.log("Submitted");
   };
 
   render() {
@@ -31,10 +32,10 @@ class RegisterForm extends Form {
       <div>
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username/Email", "email")}
-          {this.renderInput("name", "Name")}
+          {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderSubmitButton("Register")}
+          {this.renderInput("name", "Name")}
+          {this.renderButton("Register")}
         </form>
       </div>
     );

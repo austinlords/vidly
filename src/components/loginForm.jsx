@@ -17,7 +17,10 @@ class LoginForm extends Form {
       .label("Password")
   };
 
-  doSubmit = () => {};
+  doSubmit = () => {
+    // Call the server
+    console.log("Submitted");
+  };
 
   render() {
     return (
@@ -26,7 +29,7 @@ class LoginForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderSubmitButton("Login")}
+          {this.renderButton("Login")}
         </form>
       </div>
     );
